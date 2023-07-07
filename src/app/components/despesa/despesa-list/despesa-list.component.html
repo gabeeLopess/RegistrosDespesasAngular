@@ -1,0 +1,25 @@
+<div class="container my-5">
+    <h1 class="mb-3">Despesas</h1>
+
+    <table class="table" *ngIf="despesas">
+        <thead>
+            <tr>
+                <th>Código Despesa</th>
+                <th>Nome Despesa</th>
+                <th>Descrição Despesa</th>
+                <th>Data</th>
+                <th>Valor</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let despesa of despesas">
+                <td>{{ despesa.codDespesa}}</td>
+                <td>{{ despesa.nomeDespesa}}</td>
+                <td>{{ despesa.descricaoDespesa}}</td>
+                <td> {{ despesa.dataFormatada }}</td>
+                <td> {{ despesa.valor | currency:'BRL' }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <p *ngIf="!despesas">Nenhuma Despesa</p>
+</div>
