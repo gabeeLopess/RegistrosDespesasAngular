@@ -1,11 +1,11 @@
 export interface Despesa{
-    codDespesa: number;
+    codDespesa: string;
     nomeDespesa: string;
     descricaoDespesa: string;
     valor: number;
     data: Date;
-    valorTotal: number;
-    dataFormatada?: string;
+ 
+
 
    
         

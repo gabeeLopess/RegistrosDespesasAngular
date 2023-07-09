@@ -1,0 +1,48 @@
+<div class="container my-5">
+    <h1 class="mb-3">Edite suas Despesas</h1>
+
+    <div class="row">
+        <div class="col-6">
+            <form #form="ngForm" (ngSubmit)="updateDespesa()">
+                <div class="mb-3">
+                  <label for="lblNomeDespesa " class="form-label">Nome da Despesa</label>
+                  <input type="text" class="form-control" id="nomeDespesa" name="nomeDespesa" [(ngModel)]="despesaDetalhes.nomeDespesa"  required>
+                </div>
+                <div class="mb-3">
+                    <label for="lblDescricaoDespesa" class="form-label">Descrição da Despesa</label>
+                    <input type="text" class="form-control"id="descricaoDespesa" name="descricaoDespesa" [(ngModel)]="despesaDetalhes.descricaoDespesa"  required>
+                  </div>
+                <div class="mb-3">
+                    <label for="dtpData" class="form-label">Data de atualização da Despesa</label>
+                    <input type="date" class="form-control" id="data"
+                    name="data" [(ngModel)]="despesaDetalhes.data" required>
+                </div>
+                <div class="mb-3">
+                    <label for="lblValor" class="form-label">Valor</label>
+                    <input type="text"  class="form-control" id="valor" name="valor" [(ngModel)]="despesaDetalhes.valor"  required>
+                </div>
+                <button type="submit" class="btn btn-primary">Salvar</button>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">Excluir</button>
+            </form>
+          </div>
+        </div>
+      
+        <!-- Modal de confirmação para excluir despesa -->
+        <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar Exclusão</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Tem certeza de que deseja excluir esta despesa?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" (click)="deleteDespesa(despesaDetalhes.codDespesa)">Excluir</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>

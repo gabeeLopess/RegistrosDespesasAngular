@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Despesa } from 'src/app/models/despesa.model';
 import { format } from 'date-fns';
-
+import { DespesasService } from 'src/app/services/despesas.service';
 
 @Component({
   selector: 'app-despesa-list',
@@ -9,28 +9,32 @@ import { format } from 'date-fns';
   styleUrls: ['./despesa-list.component.css']
 })
 export class DespesaListComponent implements OnInit {
-  despesas: Despesa[] = [
-    {
-      codDespesa: 1,
-      nomeDespesa: 'Conta de Energia',
-      descricaoDespesa: 'Conta de Energia do mês de Julho',
-      valor: 750,
-      data: new Date('07/07/2023'),
-      valorTotal: 750,
-      dataFormatada: '' // Nova propriedade para armazenar a data formatada
-    }
-  ];
+  totalDespesas: number = 0;
+  despesas: Despesa[] = [];
 
-  constructor() { }
+  constructor(private despesaService: DespesasService) { }
 
   ngOnInit(): void {
-    this.formatarDatas();
+    this.despesaService.getAllDespesas().subscribe({
+      next: (despesas) => {
+        this.despesas = despesas;
+
+      },
+      error: (response) => {
+        console.log(response);
+      }
+    });
+
+ 
   }
 
-  formatarDatas(): void {
-    this.despesas.forEach(despesa => {
-      const dataFormatada = format(despesa.data, 'dd/MM/yyyy');
-      despesa.dataFormatada = dataFormatada;
-    });
+  calcularTotalDespesas(): number {
+    let total = 0;
+    if (this.despesas) {
+      for (let despesa of this.despesas) {
+        total += despesa.valor;
+      }
+    }
+    return total;
   }
 }

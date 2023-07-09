@@ -1,0 +1,30 @@
+<div class="container my-5">
+    <h1 class="mb-3">Adicione uma nova despesa</h1>
+
+    <div class="row">
+        <div class="col-6">
+            <form #form="ngForm" (ngSubmit)="addDespesa()">
+                <div class="mb-3">
+                  <label for="lblNomeDespesa " class="form-label">Nome da Despesa</label>
+                  <input type="text" class="form-control" id="nomeDespesa" name="nomeDespesa" [(ngModel)]="addDespesaRequest.nomeDespesa"  required>
+                </div>
+                <div class="mb-3">
+                    <label for="lblDescricaoDespesa" class="form-label">Descrição da Despesa</label>
+                    <input type="text" class="form-control"id="descricaoDespesa" name="descricaoDespesa" [(ngModel)]="addDespesaRequest.descricaoDespesa"  required>
+                  </div>
+                <div class="mb-3">
+                    <label for="dtpData" class="form-label">Data de registro da Despesa</label>
+                    <input type="date" class="form-control" id="data"
+                    name="data" [(ngModel)]="addDespesaRequest.data" required>
+                </div>
+                <div class="mb-3">
+                    <label for="lblValor" class="form-label">Valor</label>
+                    <input type="text"  class="form-control" id="valor" name="valor" [(ngModel)]="addDespesaRequest.valor"  required>
+                </div>
+                <button type="submit" class="btn btn-primary">Salvar</button>
+              </form>
+        </div>
+    </div>
+    
+  
+</div>
